@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IAQI Brand</title>
+<meta name="description" content="Logos, favicon and house style of the International Association for Quantum Information (IAQI).">
+<link rel="icon" href="favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+<link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --maroon: #660038;
+    --blue: #B7D8F2;
+    --bg: #ffffff;
+    --surface: #f6f4f2;
+    --ink: #1d1a1c;
+    --muted: #625a5f;
+    --rule: #e3dedb;
+    --accent: var(--maroon);
+    --tile-light: #ffffff;
+    --tile-dark: #1d1a1c;
+    --bad: #b00020;
+    --good: #1e6b30;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141113;
+      --surface: #1f1b1e;
+      --ink: #efe9ec;
+      --muted: #a89ea4;
+      --rule: #342d31;
+      --accent: #e7a9c9;
+      --bad: #ff7a8a;
+      --good: #7fd08f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141113;
+    --surface: #1f1b1e;
+    --ink: #efe9ec;
+    --muted: #a89ea4;
+    --rule: #342d31;
+    --accent: #e7a9c9;
+    --bad: #ff7a8a;
+    --good: #7fd08f;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 400 17px/1.6 "Barlow", system-ui, sans-serif;
+  }
+  a { color: var(--accent); }
+  code, pre { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.85em; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 700px) { .wrap { padding: 0 32px; } }
+
+  header.top { border-bottom: 1px solid var(--rule); }
+  header.top .wrap { display: flex; align-items: center; gap: 14px; padding-top: 14px; padding-bottom: 14px; }
+  header.top img { width: 44px; height: 44px; }
+  header.top .name { font: 600 1.25rem/1.1 "Barlow Condensed", sans-serif; letter-spacing: 0.02em; }
+  header.top .name small { display: block; font: 400 0.8rem/1.3 "Barlow", sans-serif; color: var(--muted); letter-spacing: 0; }
+  header.top nav { margin-left: auto; display: flex; gap: 18px; flex-wrap: wrap; font-size: 0.95rem; }
+  header.top nav a { color: var(--ink); text-decoration: none; }
+  header.top nav a:hover { color: var(--accent); }
+  @media (max-width: 760px) { header.top nav { display: none; } }
+
+  .hero { background: var(--maroon); color: #fff; }
+  .hero .wrap { display: grid; gap: 24px; align-items: center; padding-top: 48px; padding-bottom: 48px; }
+  @media (min-width: 760px) { .hero .wrap { grid-template-columns: 1fr 260px; } }
+  .hero h1 { font: 600 clamp(2.2rem, 6vw, 3.6rem)/1.05 "Barlow Condensed", sans-serif; margin: 0 0 12px; letter-spacing: 0.01em; }
+  .hero p { margin: 0; max-width: 34em; color: #f1dfe8; font-size: 1.1rem; }
+  .hero img { width: 100%; max-width: 260px; justify-self: center; }
+
+  section { padding: 56px 0 8px; }
+  h2 { font: 600 2rem/1.1 "Barlow Condensed", sans-serif; margin: 0 0 8px; letter-spacing: 0.01em; }
+  h3 { font: 600 1.15rem/1.2 "Barlow", sans-serif; margin: 0 0 6px; }
+  .lede { color: var(--muted); margin: 0 0 24px; max-width: 46em; }
+  .note { color: var(--muted); font-size: 0.92rem; }
+  .tag { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); border: 1px solid var(--rule); border-radius: 99px; padding: 1px 9px; margin-left: 6px; vertical-align: 2px; }
+
+  /* Which file */
+  table { width: 100%; border-collapse: collapse; font-size: 0.97rem; }
+  th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-weight: 600; color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .table-scroll { overflow-x: auto; }
+  @media (max-width: 640px) {
+    table.stack thead { display: none; }
+    table.stack tr { display: block; border-bottom: 1px solid var(--rule); padding: 10px 0; }
+    table.stack td { display: block; border: 0; padding: 2px 0; }
+    table.stack td:first-child { font-weight: 600; }
+  }
+
+  /* Variant cards */
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .card { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; background: var(--surface); display: flex; flex-direction: column; }
+  .card.wide { grid-column: 1 / -1; }
+  .tile { aspect-ratio: 1; display: grid; place-items: center; padding: 14%; background: var(--tile-light); transition: background 150ms ease; }
+  .card.wide .tile { aspect-ratio: auto; padding: 36px; }
+  .card.wide .tile img { height: 190px; }
+  @media (max-width: 640px) { .card.wide .tile img { height: 110px; } }
+  .tile img { width: 100%; height: 100%; object-fit: contain; }
+  .tile[data-bg="dark"] { background: var(--tile-dark); }
+  .tile[data-bg="maroon"] { background: var(--maroon); }
+  .card .meta { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .card .meta p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+  .bgs { display: flex; gap: 6px; align-items: center; font-size: 0.8rem; color: var(--muted); }
+  .bgs button { width: 22px; height: 22px; border-radius: 50%; border: 1px solid #8884; cursor: pointer; padding: 0; }
+  .bgs button[aria-pressed="true"] { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .bgs button[data-bg="light"] { background: #fff; }
+  .bgs button[data-bg="dark"] { background: #1d1a1c; }
+  .bgs button[data-bg="maroon"] { background: var(--maroon); }
+  .dl { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .dl a { font-size: 0.82rem; text-decoration: none; border: 1px solid var(--rule); border-radius: 6px; padding: 3px 9px; color: var(--ink); background: var(--bg); }
+  .dl a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Colours */
+  .swatches { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .swatch { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; background: var(--surface); text-align: left; padding: 0; cursor: pointer; font: inherit; color: inherit; }
+  .swatch .chip { height: 110px; border-bottom: 1px solid var(--rule); }
+  .swatch .info { padding: 10px 14px 12px; }
+  .swatch .info b { display: block; }
+  .swatch .info code { color: var(--muted); }
+  .swatch .copied { float: right; font-size: 0.8rem; color: var(--good); opacity: 0; transition: opacity 150ms; }
+  .swatch.done .copied { opacity: 1; }
+
+  /* Rules */
+  .two { display: grid; gap: 28px; }
+  @media (min-width: 820px) { .two { grid-template-columns: 1fr 1fr; } }
+  .figure { background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 12px; }
+  .figure img { width: 100%; height: auto; display: block; }
+  .figure.sizes { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-around; gap: 18px 12px; }
+  .figure.sizes figure { margin: 0; text-align: center; }
+  .figure.sizes img { display: block; margin: 0 auto 8px; width: var(--w); height: auto; }
+  .figure.sizes figcaption { font-size: 0.82rem; }
+  .figure.sizes .bad { color: #b00020; } .figure.sizes .good { color: #1e6b30; }
+  ul.tight { padding-left: 1.2em; margin: 0 0 1rem; }
+  ul.tight li { margin: 4px 0; }
+
+  /* Favicon */
+  .fav-row { display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-end; margin-bottom: 18px; }
+  .fav-row figure { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
+  .fav-row img { display: block; margin: 0 auto 6px; image-rendering: auto; }
+  pre { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 40px 16px 14px; overflow-x: auto; margin: 0; }
+  .copy-wrap { position: relative; }
+  .copy-btn { position: absolute; top: 8px; right: 8px; font: 500 0.8rem "Barlow", sans-serif; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); border-radius: 6px; padding: 3px 10px; cursor: pointer; }
+  .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Don'ts */
+  .donts { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .dont { margin: 0; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; background: var(--surface); }
+  .dont .tile { padding: 18%; position: relative; }
+  .dont .tile::after { content: ""; position: absolute; inset: 10px; background:
+      linear-gradient(to top right, transparent calc(50% - 1.5px), var(--bad) calc(50% - 1.5px), var(--bad) calc(50% + 1.5px), transparent calc(50% + 1.5px)); opacity: 0.85; pointer-events: none; }
+  .dont figcaption { padding: 8px 12px 10px; font-size: 0.88rem; }
+  .x-stretch img { transform: scaleX(1.45); }
+  .x-rotate img { transform: rotate(-18deg); }
+  .x-recolour img { filter: hue-rotate(150deg) saturate(2); }
+  .x-shadow img { filter: drop-shadow(4px 6px 3px rgba(0,0,0,.55)); }
+  .dont .tile.x-retype { padding: 10%; font: 700 0.95rem/1.25 Georgia, serif; color: var(--maroon); text-align: center; }
+
+  /* Typography */
+  .specimen { border: 1px solid var(--rule); border-radius: 10px; padding: 20px; background: var(--surface); }
+  .specimen .big { font: 600 2.4rem/1.1 "Barlow Condensed", sans-serif; margin: 0 0 6px; }
+  .specimen .body { font: 400 1.05rem/1.55 "Barlow", sans-serif; margin: 0; }
+
+  footer { margin-top: 64px; border-top: 1px solid var(--rule); padding: 24px 0 40px; color: var(--muted); font-size: 0.9rem; }
+  footer p { margin: 0 0 8px; }
+
+  .theme-toggle { font: 500 0.85rem "Barlow", sans-serif; border: 1px solid var(--rule); background: none; color: var(--ink); border-radius: 99px; padding: 3px 12px; cursor: pointer; }
+</style>
+<script>
+  try { const t = localStorage.getItem("iaqi-brand-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <img src="logos/svg/iaqi-mark-coloured.svg" alt="" style="background:#fff;border-radius:50%;padding:3px">
+    <div class="name">IAQI brand<small>International Association for Quantum Information</small></div>
+    <nav aria-label="Sections">
+      <a href="#which">Which file</a>
+      <a href="#variants">Logos</a>
+      <a href="#colours">Colours</a>
+      <a href="#rules">Size &amp; space</a>
+      <a href="#favicon">Favicon</a>
+      <a href="#donts">Don'ts</a>
+      <a href="https://github.com/IAQI/iaqi-brand">GitHub</a>
+    </nav>
+    <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>IAQI house style</h1>
+      <p>The logos, colours and favicon of the International Association for Quantum Information and its conferences (QIP, QCrypt and TQC), with guidance on which file to use where.</p>
+    </div>
+    <img src="logos/svg/iaqi-mark-white.svg" alt="The IAQI mark">
+  </div>
+</div>
+
+<main class="wrap">
+
+<section id="which">
+  <h2>Which file to use</h2>
+  <p class="lede">Prefer <strong>SVG</strong>: it is sharp at every size and is the smallest file. Use PNG when a tool doesn't take SVG, and JPEG only when it can't take a transparent PNG either.</p>
+  <div class="table-scroll">
+  <table class="stack">
+    <thead><tr><th>You are making…</th><th>Use</th><th>Download</th></tr></thead>
+    <tbody>
+      <tr><td>A website header or navigation bar</td><td>Horizontal logo, or the mark when space is tight</td><td><a href="logos/svg/iaqi-logo-horizontal.svg">horizontal.svg</a> · <a href="logos/svg/iaqi-mark-coloured.svg">mark.svg</a></td></tr>
+      <tr><td>A browser tab icon, or a phone home-screen icon</td><td>Favicon set</td><td><a href="#favicon">see Favicon</a></td></tr>
+      <tr><td>Slides: the title slide</td><td>Full logo, coloured</td><td><a href="logos/svg/iaqi-logo-coloured.svg">logo-coloured.svg</a></td></tr>
+      <tr><td>Slides: the footer of every slide</td><td>Horizontal logo, or the mark</td><td><a href="logos/svg/iaqi-logo-horizontal.svg">horizontal.svg</a></td></tr>
+      <tr><td>Letterheads, posters, programme booklets</td><td>Full or horizontal logo</td><td><a href="logos/svg/iaqi-logo-coloured.svg">logo.svg</a> · <a href="logos/svg/iaqi-logo-horizontal.svg">horizontal.svg</a></td></tr>
+      <tr><td>An email signature</td><td>Horizontal logo, 240×56</td><td><a href="logos/png/iaqi-logo-horizontal-240x56.png">horizontal-240x56.png</a></td></tr>
+      <tr><td>A social-media avatar</td><td>The mark on white, or the white mark on maroon</td><td><a href="logos/png/iaqi-mark-coloured-200.png">mark-200.png</a> · <a href="logos/jpg/iaqi-mark-white.jpg">mark-white.jpg</a></td></tr>
+      <tr><td>Anything on maroon, dark or photo backgrounds</td><td>White variants</td><td><a href="logos/svg/iaqi-logo-white.svg">logo-white.svg</a> · <a href="logos/svg/iaqi-mark-white.svg">mark-white.svg</a></td></tr>
+      <tr><td>Single-colour print (stamps, embossing, newspaper)</td><td>Black variants</td><td><a href="logos/svg/iaqi-logo-black.svg">logo-black.svg</a> · <a href="logos/svg/iaqi-mark-black.svg">mark-black.svg</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="variants">
+  <h2>Logo variants</h2>
+  <p class="lede">The <strong>logo</strong> is the mark plus the wording "International Association for Quantum Information". The <strong>mark</strong> is the rings with "IAQI" alone; use it when the full name already appears nearby or there is no room for the wording. Each card starts on its recommended background; the dots let you try others.</p>
+  <div class="grid" id="variant-grid"></div>
+</section>
+
+<section id="colours">
+  <h2>Colours</h2>
+  <p class="lede">Click a colour to copy its hex value. The CMYK and Pantone values for print are still <strong>to be supplied</strong> by the designer; until then, give printers the hex values and a vector file.</p>
+  <div class="swatches">
+    <button class="swatch" data-hex="#660038"><div class="chip" style="background:#660038"></div><div class="info"><span class="copied">Copied</span><b>IAQI maroon</b><code>#660038 · RGB 102 0 56</code><br><span class="note">Lines, lettering, background for the white logo</span></div></button>
+    <button class="swatch" data-hex="#B7D8F2"><div class="chip" style="background:#B7D8F2"></div><div class="info"><span class="copied">Copied</span><b>IAQI light blue</b><code>#B7D8F2 · RGB 183 216 242</code><br><span class="note">Accent only: the ellipses and gates</span></div></button>
+    <button class="swatch" data-hex="#FFFFFF"><div class="chip" style="background:#FFFFFF"></div><div class="info"><span class="copied">Copied</span><b>White</b><code>#FFFFFF</code><br><span class="note">Backgrounds, the white logo</span></div></button>
+    <button class="swatch" data-hex="#000000"><div class="chip" style="background:#000000"></div><div class="info"><span class="copied">Copied</span><b>Black</b><code>#000000</code><br><span class="note">The black logo only</span></div></button>
+  </div>
+  <p class="note" style="margin-top:14px">Contrast: maroon and white 13:1, so text either way round passes WCAG AAA. Maroon on light blue is 8.7:1. Light blue on white is only 1.5:1: never use it for text or thin lines on white.</p>
+</section>
+
+<section id="rules">
+  <h2>Clear space and minimum size <span class="tag">recommended</span></h2>
+  <p class="lede">These are recommendations, not rules set by the designer.</p>
+  <div class="two">
+    <div>
+      <div class="figure"><img src="previews/clear-space.png" alt="The mark with a shaded margin of one eighth of its width on every side" width="500" height="540"></div>
+      <h3 style="margin-top:14px">Clear space</h3>
+      <p>Keep at least <strong>⅛ of the logo's width</strong> free of text and other graphics on every side.</p>
+    </div>
+    <div>
+      <div class="figure sizes">
+        <figure><img src="logos/svg/iaqi-mark-coloured.svg" width="24" height="24" style="--w:24px" alt="Mark at 24px"><figcaption class="bad">Mark 24px: too small</figcaption></figure>
+        <figure><img src="logos/svg/iaqi-mark-coloured.svg" width="48" height="48" style="--w:48px" alt="Mark at 48px"><figcaption class="good">Mark 48px: minimum</figcaption></figure>
+        <figure><img src="logos/svg/iaqi-logo-coloured.svg" width="120" style="--w:120px" alt="Logo at 120px"><figcaption class="bad">Logo 120px: too small</figcaption></figure>
+        <figure><img src="logos/svg/iaqi-logo-coloured.svg" width="200" style="--w:200px" alt="Logo at 200px"><figcaption class="good">Logo 200px: minimum</figcaption></figure>
+      </div>
+      <p class="note" style="margin-top:8px">Shown at actual size.</p>
+      <h3 style="margin-top:14px">Minimum size</h3>
+      <ul class="tight">
+        <li><strong>Mark:</strong> 48px on screen, about 12mm in print. Below that, use the <a href="#favicon">favicon</a>.</li>
+        <li><strong>Full logo with wording:</strong> 200px wide, about 30mm in print. Below that the wording can't be read, so use the mark.</li>
+        <li><strong>Horizontal logo:</strong> 56px tall, the size of the 240×56 PNG.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="favicon">
+  <h2>Favicon and app icons</h2>
+  <p class="lede">The rings blur into nothing at browser-tab size, so the favicon is a separate drawing: "IAQI" in white on a maroon tile.</p>
+  <div class="fav-row">
+    <figure><img src="favicon/favicon.svg" width="16" height="16" alt="">16px</figure>
+    <figure><img src="favicon/favicon.svg" width="32" height="32" alt="">32px</figure>
+    <figure><img src="favicon/favicon.svg" width="48" height="48" alt="">48px</figure>
+    <figure><img src="favicon/apple-touch-icon.png" width="90" height="90" alt="" style="border-radius:20px">iPhone (180px)</figure>
+    <figure><img src="favicon/icon-512.png" width="120" height="120" alt="">App icon (512px)</figure>
+  </div>
+  <div class="dl" style="margin-bottom:16px">
+    <a href="favicon/favicon.svg">favicon.svg</a><a href="favicon/favicon.ico">favicon.ico</a><a href="favicon/apple-touch-icon.png">apple-touch-icon.png</a><a href="favicon/icon-192.png">icon-192.png</a><a href="favicon/icon-512.png">icon-512.png</a><a href="favicon/site.webmanifest">site.webmanifest</a>
+  </div>
+  <p>Copy the files to the root of your site and add this to <code>&lt;head&gt;</code>:</p>
+  <div class="copy-wrap">
+<pre id="fav-snippet">&lt;link rel="icon" href="/favicon.ico" sizes="any"&gt;
+&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;
+&lt;link rel="manifest" href="/site.webmanifest"&gt;</pre>
+    <button class="copy-btn" data-copy="fav-snippet" type="button">Copy</button>
+  </div>
+</section>
+
+<section id="donts">
+  <h2>Don'ts</h2>
+  <p class="lede">Use the artwork as supplied. The only allowed colour change is switching to the black or white variant.</p>
+  <div class="donts">
+    <figure class="dont x-stretch"><div class="tile"><img src="logos/svg/iaqi-mark-coloured.svg" alt=""></div><figcaption>Don't stretch or squash it</figcaption></figure>
+    <figure class="dont x-rotate"><div class="tile"><img src="logos/svg/iaqi-mark-coloured.svg" alt=""></div><figcaption>Don't rotate it</figcaption></figure>
+    <figure class="dont x-recolour"><div class="tile"><img src="logos/svg/iaqi-mark-coloured.svg" alt=""></div><figcaption>Don't recolour it</figcaption></figure>
+    <figure class="dont x-shadow"><div class="tile"><img src="logos/svg/iaqi-mark-coloured.svg" alt=""></div><figcaption>Don't add shadows, glows or outlines</figcaption></figure>
+    <figure class="dont"><div class="tile x-retype">International Association for Quantum Information</div><figcaption>Don't retype the wording or set it in another font</figcaption></figure>
+    <figure class="dont"><div class="tile" data-bg="maroon"><img src="logos/svg/iaqi-mark-coloured.svg" alt=""></div><figcaption>Don't put the coloured logo on maroon or dark backgrounds</figcaption></figure>
+  </div>
+</section>
+
+<section id="type">
+  <h2>Typography</h2>
+  <p class="lede">The logo wording is set in <strong>FF DIN</strong> (Albert-Jan Pool, FontShop, now Monotype). Never retype it; always use the artwork. FF DIN is a commercial font and isn't distributed here.</p>
+  <div class="specimen">
+    <p class="big">Barlow Condensed for headings</p>
+    <p class="body">Suggestion: <a href="https://fonts.google.com/specimen/Barlow">Barlow</a> (free, SIL Open Font License) has a DIN-like, slightly rounded look and works for headings and documents in IAQI's style. It is built into Google Docs and Google Slides. This page is set in it.</p>
+  </div>
+</section>
+
+<section id="terms">
+  <h2>Usage terms</h2>
+  <p>The IAQI name and logo belong to IAQI and are <strong>not</strong> under an open licence. They may be used to refer to IAQI, its conferences (QIP, QCrypt, TQC) and activities IAQI supports, following this guide. For any other use, contact IAQI.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Source files, the Illustrator working file and the build script are in the <a href="https://github.com/IAQI/iaqi-brand">IAQI/iaqi-brand</a> repository.</p>
+    <p>All SVGs have their text converted to outlines, so no font needs to be installed.</p>
+  </div>
+</footer>
+
+<script>
+  const VARIANTS = [
+    { file: "iaqi-logo-coloured", title: "Logo, coloured", text: "The default. On white or light backgrounds.", bg: "light", png: true, jpg: true },
+    { file: "iaqi-logo-black",    title: "Logo, black",    text: "Single-colour print only.",                 bg: "light", png: true, jpg: true },
+    { file: "iaqi-logo-white",    title: "Logo, white",    text: "On maroon, dark or photo backgrounds.",      bg: "maroon", png: true, jpg: true },
+    { file: "iaqi-mark-coloured", title: "Mark, coloured", text: "Avatars and tight spaces, on light backgrounds.", bg: "light", png: true, jpg: true, small: ["iaqi-mark-coloured-200.png", "iaqi-mark-coloured-240x56.png"] },
+    { file: "iaqi-mark-black",    title: "Mark, black",    text: "Single-colour print only.",                 bg: "light", png: true, jpg: true, small: ["iaqi-mark-black-200.png"] },
+    { file: "iaqi-mark-white",    title: "Mark, white",    text: "On maroon, dark or photo backgrounds.",      bg: "maroon", png: true, jpg: true, small: ["iaqi-mark-white-200.png", "iaqi-mark-white-240x56.png"] },
+    { file: "iaqi-logo-horizontal", title: "Horizontal logo", text: "Headers, footers, letterheads and email signatures. A white version exists only as a 240×56 PNG.", bg: "light", png: true, jpg: true, wide: true, small: ["iaqi-logo-horizontal-240x56.png", "iaqi-logo-horizontal-white-240x56.png"] },
+  ];
+  const grid = document.getElementById("variant-grid");
+  for (const v of VARIANTS) {
+    const card = document.createElement("article");
+    card.className = "card" + (v.wide ? " wide" : "");
+    const links = [`<a href="logos/svg/${v.file}.svg" download>SVG</a>`];
+    if (v.png) links.push(`<a href="logos/png/${v.file}.png" download>PNG (large)</a>`);
+    for (const s of v.small || []) links.push(`<a href="logos/png/${s}" download>${s.replace(v.file, "").replace(/^-/, "").replace(".png", "") || "PNG"} PNG</a>`);
+    if (v.jpg) links.push(`<a href="logos/jpg/${v.file}.jpg" download>JPG</a>`);
+    card.innerHTML = `
+      <div class="tile" data-bg="${v.bg}"><img src="logos/svg/${v.file}.svg" alt="${v.title}" loading="lazy"></div>
+      <div class="meta">
+        <h3>${v.title}</h3>
+        <p>${v.text}</p>
+        <div class="bgs">Background:
+          ${["light", "dark", "maroon"].map(b => `<button type="button" data-bg="${b}" aria-label="${b} background" aria-pressed="${b === v.bg}"></button>`).join("")}
+        </div>
+        <div class="dl">${links.join("")}</div>
+      </div>`;
+    card.querySelectorAll(".bgs button").forEach(btn => btn.addEventListener("click", () => {
+      card.querySelector(".tile").dataset.bg = btn.dataset.bg;
+      card.querySelectorAll(".bgs button").forEach(b => b.setAttribute("aria-pressed", b === btn));
+    }));
+    grid.appendChild(card);
+  }
+
+  async function copy(text) {
+    try { await navigator.clipboard.writeText(text); return true; } catch (e) { return false; }
+  }
+  document.querySelectorAll(".swatch").forEach(el => el.addEventListener("click", async () => {
+    if (await copy(el.dataset.hex)) { el.classList.add("done"); setTimeout(() => el.classList.remove("done"), 1200); }
+  }));
+  document.querySelectorAll(".copy-btn").forEach(btn => btn.addEventListener("click", async () => {
+    if (await copy(document.getElementById(btn.dataset.copy).textContent)) {
+      btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy"), 1200);
+    }
+  }));
+
+  const root = document.documentElement, toggle = document.getElementById("theme-toggle");
+  const isDark = () => root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  const label = () => (toggle.textContent = isDark() ? "Light" : "Dark");
+  label();
+  toggle.addEventListener("click", () => {
+    root.dataset.theme = isDark() ? "light" : "dark";
+    try { localStorage.setItem("iaqi-brand-theme", root.dataset.theme); } catch (e) {}
+    label();
+  });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", label);
+</script>
+</body>
+</html>
