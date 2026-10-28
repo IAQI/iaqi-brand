@@ -41,6 +41,11 @@ svg "IAQI logo horizontal"           iaqi-logo-horizontal
 svg "IAQI logo coloured - no text"   iaqi-mark-coloured
 svg "IAQI logo black - no text"      iaqi-mark-black
 svg "IAQI logo white - no text"      iaqi-mark-white
+# No white horizontal SVG was exported: compose it from the white mark and the
+# horizontal wording, then outline it like the others.
+python3 tools/white_horizontal.py "$SRC/Logos (SVG)/IAQI logo white - no text.svg" \
+  "$SRC/Logos (SVG)/IAQI logo horizontal.svg" "$WORK/white-horizontal.svg"
+inkscape "$WORK/white-horizontal.svg" --export-text-to-path --export-plain-svg -o logos/svg/iaqi-logo-horizontal-white.svg 2>/dev/null
 if grep -l '<text' logos/svg/*.svg; then echo "error: un-outlined text left in the SVGs above" >&2; exit 1; fi
 
 # ── PNG and JPEG: designer exports, renamed ──────────────────────────────────
@@ -52,6 +57,7 @@ for c in coloured black white; do
   cp "$J/IAQI logo _$c - no text.jpg"     logos/jpg/iaqi-mark-$c.jpg
 done
 cp "$P/IAQI logo horizontal logo.png"          logos/png/iaqi-logo-horizontal.png
+inkscape logos/svg/iaqi-logo-horizontal-white.svg -w 8334 -o logos/png/iaqi-logo-horizontal-white.png 2>/dev/null
 cp "$P/IAQI logo horizontal 240x56.png"        logos/png/iaqi-logo-horizontal-240x56.png
 cp "$P/IAQI logo horizontal white 240x56.png"  logos/png/iaqi-logo-horizontal-white-240x56.png
 cp "$P/IAQI logo coloured - no text 240x56.png" logos/png/iaqi-mark-coloured-240x56.png
@@ -62,6 +68,7 @@ cp "$J/IAQI logo _horizontal logo.jpg"         logos/jpg/iaqi-logo-horizontal.jp
 # The designer's "_white.jpg" is white on white (blank); rebuild it on maroon,
 # like the white mark JPEG.
 magick logos/png/iaqi-logo-white.png -background "$MAROON" -flatten -quality 92 logos/jpg/iaqi-logo-white.jpg
+magick logos/png/iaqi-logo-horizontal-white.png -background "$MAROON" -flatten -quality 92 logos/jpg/iaqi-logo-horizontal-white.jpg
 
 cp "$SRC/IAQI logo - working file.ai" source/IAQI-logo-working-file.ai
 
@@ -84,6 +91,8 @@ for c in coloured black; do prev iaqi-logo-$c white; prev iaqi-mark-$c white; do
 prev iaqi-logo-white "$MAROON"; prev iaqi-mark-white "$MAROON"
 inkscape logos/svg/iaqi-logo-horizontal.svg -w 1200 -o "$WORK/h.png" 2>/dev/null
 magick "$WORK/h.png" -resize 640x -background white -gravity center -extent 740x320 previews/iaqi-logo-horizontal.png
+inkscape logos/svg/iaqi-logo-horizontal-white.svg -w 1200 -o "$WORK/hw.png" 2>/dev/null
+magick "$WORK/hw.png" -resize 640x -background "$MAROON" -gravity center -extent 740x320 previews/iaqi-logo-horizontal-white.png
 
 # Favicon at the sizes browsers use, enlarged with nearest-neighbour.
 fav=()
@@ -117,9 +126,20 @@ cell iaqi-logo-coloured 120 "logo 120px: too small" "#B00020" "$WORK/s3.png"
 cell iaqi-logo-coloured 200 "logo 200px: minimum"   "#1E6B30" "$WORK/s4.png"
 magick "$WORK"/s[1-4].png +append +repage previews/minimum-sizes.png
 
+# "QIP 2027" in FF DIN, outlined, for the typography specimen on the page.
+cat > "$WORK/spec.svg" <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 140"><text x="0" y="110" font-family="DIN" font-size="120" fill="#000">QIP 2027</text></svg>
+SVG
+inkscape "$WORK/spec.svg" --export-text-to-path --export-plain-svg --export-area-drawing -o previews/specimen-ff-din.svg 2>/dev/null
+
 # Colour swatches for the README.
 for h in 660038 B7D8F2 FFFFFF 000000; do
   magick -size 22x22 xc:"#$h" -bordercolor "#999999" -border 1 "previews/swatch-$h.png"
+done
+
+# Drop timestamp chunks so rebuilding gives byte-identical files.
+for f in previews/*.png favicon/*.png logos/png/iaqi-logo-horizontal-white.png; do
+  magick "$f" -define png:exclude-chunks=date,time,tIME "$f"
 done
 
 echo "built into $ROOT"

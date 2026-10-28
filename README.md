@@ -25,7 +25,7 @@ Logos, favicon and house style for the **International Association for Quantum I
 | Letterheads, posters, programme booklets | Full logo or horizontal logo, as SVG | [`logos/svg/`](logos/svg/) |
 | An email signature | Horizontal logo, 240×56 PNG | [`iaqi-logo-horizontal-240x56.png`](logos/png/iaqi-logo-horizontal-240x56.png) |
 | A social-media avatar | The mark on white, or the white mark on maroon | [`iaqi-mark-coloured-200.png`](logos/png/iaqi-mark-coloured-200.png), [`iaqi-mark-white.jpg`](logos/jpg/iaqi-mark-white.jpg) |
-| Anything on a maroon, dark or photo background | White variants | [`iaqi-logo-white.svg`](logos/svg/iaqi-logo-white.svg), [`iaqi-mark-white.svg`](logos/svg/iaqi-mark-white.svg) |
+| Anything on a maroon, dark or photo background | White variants | [`iaqi-logo-white.svg`](logos/svg/iaqi-logo-white.svg), [`iaqi-logo-horizontal-white.svg`](logos/svg/iaqi-logo-horizontal-white.svg), [`iaqi-mark-white.svg`](logos/svg/iaqi-mark-white.svg) |
 | Single-colour print (stamps, embossing, fax, newspaper) | Black variants | [`iaqi-logo-black.svg`](logos/svg/iaqi-logo-black.svg), [`iaqi-mark-black.svg`](logos/svg/iaqi-mark-black.svg) |
 | A tool that can't take SVG or transparent PNG (some forms and office tools) | JPEG | [`logos/jpg/`](logos/jpg/) |
 
@@ -40,9 +40,9 @@ The **logo** is the mark plus the wording "International Association for Quantum
 | **Logo** | ![Coloured logo](previews/iaqi-logo-coloured.png) | ![Black logo](previews/iaqi-logo-black.png) | ![White logo](previews/iaqi-logo-white.png) |
 | **Mark** | ![Coloured mark](previews/iaqi-mark-coloured.png) | ![Black mark](previews/iaqi-mark-black.png) | ![White mark](previews/iaqi-mark-white.png) |
 
-**Horizontal logo.** The mark with the wording beside it, for wide, short spaces such as headers, footers and signatures.
+**Horizontal logo.** The mark with the wording beside it, for wide, short spaces such as headers, footers and signatures. It comes in coloured and white.
 
-![Horizontal logo](previews/iaqi-logo-horizontal.png)
+![Horizontal logo, coloured](previews/iaqi-logo-horizontal.png) ![Horizontal logo, white](previews/iaqi-logo-horizontal-white.png)
 
 - **Coloured** is the default. Use it on white or light backgrounds.
 - **Black** is for single-colour reproduction only.
@@ -100,9 +100,23 @@ and use [`site.webmanifest`](favicon/site.webmanifest) for the icons.
 
 ## Typography
 
-The logo wording is set in **FF DIN** (Albert-Jan Pool, FontShop, now Monotype). Never retype it; always use the artwork. FF DIN is a commercial font, so it is not in this repo; the SVGs have the wording converted to outlines and need no font.
+| Font | Licence | Use it for |
+|---|---|---|
+| **FF DIN** (Albert-Jan Pool, FontShop, now Monotype) | Commercial | The logo wording. Only needed to make *new* logo artwork, such as a conference lockup; requires a licence. |
+| **[D-DIN](fonts/d-din/)** (Datto) | Free, SIL OFL | Headings and design work in IAQI's style: posters, slides made in Keynote or PowerPoint, websites. Included in this repo. |
+| **[Barlow](https://fonts.google.com/specimen/Barlow)** | Free, SIL OFL | Google Docs and Google Slides, where D-DIN isn't available; Barlow is built in. Also good for body text. |
 
-*Suggestion:* for headings and documents in IAQI's style, **[Barlow](https://fonts.google.com/specimen/Barlow)** is a good match: a free font (SIL Open Font License) with a DIN-like, slightly rounded look. It is built into Google Docs and Google Slides, and the portfolio page uses it.
+**Never retype the logo wording; always use the artwork.** The SVGs have the wording converted to outlines, so nobody needs FF DIN just to use the logo. FF DIN is commercial, so it is not in this repo.
+
+**How close are the free fonts?** Each row below sets the logo wording in another font; the overlay on the right puts it on top of the original.
+
+![The horizontal logo with its wording in FF DIN, D-DIN, D-DIN letter-spaced, Barlow and Barlow Semi Condensed, with overlays](previews/font-comparison.png)
+
+- **D-DIN** follows the original DIN 1451 design that FF DIN is based on, so the letter shapes are almost the same. It is about 10% narrower; with letter-spacing of **+0.06em** (8px at the logo's 130px size) it matches FF DIN's width, and the overlay is nearly identical.
+- **Barlow** is closer in width, but rounder: the S, C, O and the tail of the Q visibly differ.
+- **Barlow Semi Condensed** is 18% narrower and doesn't match the logo.
+
+D-DIN is close enough for headings next to the logo, but not for altering the logo itself. Use the supplied artwork for that, or FF DIN if new logo artwork is needed.
 
 ## Don'ts
 
@@ -122,9 +136,11 @@ logos/svg/   vector logos (text converted to outlines, so no font is needed)
 logos/png/   transparent PNGs: 4500px masters, plus 200px and 240x56 web sizes
 logos/jpg/   flattened JPEGs (white backgrounds, or maroon for the white variants)
 favicon/     favicon and app icons (favicon.svg is the master drawing)
+fonts/d-din/ D-DIN, the free DIN-style font (TTF and WOFF2, with its OFL licence)
 source/      the designer's Adobe Illustrator working file
 previews/    images used by this README
-tools/       build.sh: rebuilds everything above from the designer's files
+tools/       build.sh rebuilds everything above from the designer's files;
+             font_comparison.sh renders the font comparison
 ```
 
 The files were renamed from the designer's originals, which have spaces in their names, to names that work in URLs:
@@ -141,14 +157,15 @@ Changes from the originals:
 - **SVG text outlined.** The SVGs with wording had it as live text in FF DIN, which most computers don't have. It is now converted to outlines.
 - **`iaqi-logo-white.jpg` rebuilt.** The original export was white on white (blank). It is now white on maroon, like `iaqi-mark-white.jpg`.
 - **New favicon set.** It replaces the earlier full-logo favicon.
-
-Gaps: there is no white horizontal logo as SVG or large PNG, only the 240×56 PNG.
+- **White horizontal logo added.** The designer exported it only as a 240×56 PNG. `iaqi-logo-horizontal-white.svg` (and its PNG and JPEG) is the designer's white mark plus the horizontal wording in white, made by `tools/white_horizontal.py`. It matches the designer's 240×56 PNG.
 
 To rebuild everything from the designer's folder (needs Inkscape and ImageMagick 7), run:
 
 ```sh
 tools/build.sh "/path/to/Logo files"
 ```
+
+The `.ai` working file embeds the letters of FF DIN that the wording uses, which the font's embedding setting allows; editing the wording in Illustrator still needs FF DIN installed.
 
 ## Usage terms
 
