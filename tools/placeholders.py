@@ -53,14 +53,16 @@ def svg(w, h, body, background=MAROON, label=""):
 
 
 def background():
-    # Home page photo: the logo stand-in sits in the middle and the photo is
-    # darkened, so the spec goes to the lower left.
+    # Home page photo: it fills the window (cropped at the sides on most
+    # screens), with the logo and the dates in the middle column. So the spec
+    # goes to the left of that column, inside what a 1280 px window still shows.
     w, h = 1920, 960
     body = rings(w / 2, h / 2, 900, 0.25)
-    body += text(80, 790, 56, "Background photo", anchor="start", weight="bold")
-    body += text(80, 845, 32, "1920 × 960 px JPEG, at most 500 KB", BLUE, "start")
-    body += text(80, 890, 32, "Keep the subject in the centre: the photo is cropped and darkened",
-                 BLUE, "start")
+    x = 240
+    body += text(x, 400, 46, "Background photo", anchor="start", weight="bold")
+    for i, line in enumerate(("1920 × 960 px JPEG,", "at most 500 KB.", "Keep the subject in the centre:",
+                              "it is cropped to the window", "and darkened.")):
+        body += text(x, 452 + 38 * i, 30, line, BLUE, "start")
     return svg(w, h, body, label="Stand-in: background photo of the home page")
 
 
