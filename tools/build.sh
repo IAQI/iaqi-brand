@@ -142,4 +142,7 @@ for f in previews/*.png favicon/*.png logos/png/iaqi-logo-horizontal-white.png; 
   magick "$f" -define png:exclude-chunks=date,time,tIME "$f"
 done
 
+# Stand-ins for the conference websites, made from the marks above.
+python3 tools/placeholders.py
+
 echo "built into $ROOT"
