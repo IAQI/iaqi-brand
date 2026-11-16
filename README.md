@@ -155,7 +155,7 @@ says where each one is set). A live year that still shows a stand-in gives a war
 when the site is built.
 
 To change the stand-ins, edit and run `tools/placeholders.py`, then copy
-`placeholders/` to the theme's `static/images/placeholder/`.
+`placeholders/` to the theme's `assets/images/placeholder/`.
 
 ## Files in this repo
 
