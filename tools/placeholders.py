@@ -8,7 +8,7 @@ photos and banner exist. Each one says what to deliver in its place (see
 "Stand-ins for conference websites" in README.md). They use the IAQI mark as it
 is, from logos/svg/, on IAQI maroon, and contain no conference name or year, so
 all three conferences share them. The conference websites get them through the
-shared theme (github.com/IAQI/conference-theme, static/images/placeholder/).
+shared theme (github.com/IAQI/conference-theme, assets/images/placeholder/).
 """
 import re
 from pathlib import Path
