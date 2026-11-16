@@ -11,6 +11,7 @@ Logos, favicon and house style for the **International Association for Quantum I
 - [Favicon and app icons](#favicon-and-app-icons)
 - [Typography](#typography)
 - [Don'ts](#donts)
+- [Stand-ins for conference websites](#stand-ins-for-conference-websites)
 - [Files in this repo](#files-in-this-repo)
 - [Usage terms](#usage-terms)
 
@@ -129,6 +130,33 @@ D-DIN is close enough for headings next to the logo, but not for altering the lo
 
 The [portfolio page](https://iaqi.github.io/iaqi-brand/#donts) shows each of these.
 
+## Stand-ins for conference websites
+
+When a new year of QIP, QCrypt or TQC starts, its website shows these stand-ins until the
+organizers deliver the real images. Each one says what is wanted in its place, so a reviewer
+sees at once what is still missing. They contain the IAQI mark (unchanged) but no conference
+name or year, so all three conferences share them.
+
+| Stand-in | Replaced by | Format to deliver |
+|---|---|---|
+| [`background.svg`](placeholders/background.svg) | the photo behind the home page | 1920×960 px JPEG, at most 500 KB. The subject in the centre: the photo is cropped to the window and darkened, and the logo sits on top. |
+| [`logo.svg`](placeholders/logo.svg) | the conference logo on the home page photo | SVG, or transparent PNG at least 800 px wide. Shown 400 px wide on a dark photo, so it needs to work in white or on dark. |
+| [`header-logo.svg`](placeholders/header-logo.svg) | the logo in the top bar of every page | SVG, or transparent PNG at least 96 px tall. Shown 48 px tall and at most 180 px wide, on the year's main colour. |
+| [`banner.svg`](placeholders/banner.svg) | the banner at the top of the inside pages | 2000×800 px JPEG. Shown 300 px high and cropped around the centre to the window width. |
+| [`person.svg`](placeholders/person.svg) | a committee member's or speaker's photo | Square JPEG, at least 400×400 px, face in the centre. Shown as a small circle. |
+| [`sponsor.svg`](placeholders/sponsor.svg) | a sponsor's logo | SVG, or transparent PNG at least 600 px wide. Scaled to fit a box on a white page. |
+
+The websites get them from their shared theme,
+[IAQI/conference-theme](https://github.com/IAQI/conference-theme), as
+`/images/placeholder/<name>.svg`; its `new_year.py` puts them in every new year. To
+replace one, put the real file in the website's `static/images/<year>/` and change the
+path (the theme's [website guide](https://github.com/IAQI/conference-theme/blob/main/docs/website-guide.md)
+says where each one is set). A live year that still shows a stand-in gives a warning
+when the site is built.
+
+To change the stand-ins, edit and run `tools/placeholders.py`, then copy
+`placeholders/` to the theme's `static/images/placeholder/`.
+
 ## Files in this repo
 
 ```
@@ -136,10 +164,12 @@ logos/svg/   vector logos (text converted to outlines, so no font is needed)
 logos/png/   transparent PNGs: 4500px masters, plus 200px and 240x56 web sizes
 logos/jpg/   flattened JPEGs (white backgrounds, or maroon for the white variants)
 favicon/     favicon and app icons (favicon.svg is the master drawing)
+placeholders/ stand-in images for the conference websites (made by tools/placeholders.py)
 fonts/d-din/ D-DIN, the free DIN-style font (TTF and WOFF2, with its OFL licence)
 source/      the designer's Adobe Illustrator working file
 previews/    images used by this README
 tools/       build.sh rebuilds everything above from the designer's files;
+             placeholders.py makes the stand-ins;
              font_comparison.sh renders the font comparison
 ```
 
